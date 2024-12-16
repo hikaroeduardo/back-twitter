@@ -27,7 +27,7 @@ export const addTweet = async (req: ExtendedRequest, res: Response) => {
         safeData.data.answer ? parseInt(safeData.data.answer) : 0
     );
 
-    const hastags = safeData.data.body.match(/#[a-zA-Z0-9_]/g);
+    const hastags = safeData.data.body.match(/#[a-zA-Z0-9_]+/g);
     if (hastags) {
         for (let hastag of hastags) {
             if (hastag.length >= 2) {
