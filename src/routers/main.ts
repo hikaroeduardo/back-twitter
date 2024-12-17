@@ -13,3 +13,4 @@ mainRouter.post("/auth/signup", authController.signup);
 mainRouter.post("/auth/signin", authController.signIn);
 
 mainRouter.post("/tweet", verifyJWT, tweetController.addTweet);
+mainRouter.get("/tweet/:id", verifyJWT, tweetController.getTweet);
