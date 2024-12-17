@@ -72,3 +72,14 @@ export const findAnswersFromTweet = async (id: number) => {
 
     return tweets;
 };
+
+export const checkIfTweetLikedByUser = async (slug: string, id: number) => {
+    const isLiked = await prisma.tweetLike.findFirst({
+        where: {
+            userSlug: slug,
+            tweetId: id,
+        },
+    });
+
+    return isLiked ? true : false;
+};
