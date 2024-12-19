@@ -9,10 +9,12 @@ import {
     getUserFollowingCount,
     getUserTweetCount,
     unfollow,
+    updateUserInfo,
 } from "../services/user";
+import { findTweetsByUser } from "../services/tweet";
 
 import { userTweetsSchema } from "../schemas/user-tweets";
-import { findTweetsByUser } from "../services/tweet";
+import { updateUserSchema } from "../schemas/update-user";
 
 export const getUser = async (req: ExtendedRequest, res: Response) => {
     const { slug } = req.params;
@@ -72,4 +74,18 @@ export const followToggle = async (req: ExtendedRequest, res: Response) => {
         await unfollow(me, slug);
         res.json({ following: false });
     }
+};
+
+export const updateUser = async (req: ExtendedRequest, res: Response) => {
+    const { slug } = req.params;
+
+    const safeData = updateUserSchema.safeParse(req.body);
+    if (!safeData.success) {
+        res.json({ error: safeData.error.flatten().fieldErrors });
+        return;
+    }
+
+    await updateUserInfo(req.userSlug as string, safeData.data);
+
+    res.json({});
 };
