@@ -76,3 +76,14 @@ export const getUserTweetCount = async (slug: string) => {
 
     return count;
 };
+
+export const checkIfFollows = async (user1Slug: string, user2Slug: string) => {
+    const follows = await prisma.follow.findFirst({
+        where: {
+            user1Slug,
+            user2Slug,
+        },
+    });
+
+    return follows ? true : false;
+};
