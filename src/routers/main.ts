@@ -19,3 +19,4 @@ mainRouter.get("/tweet/:id/answers", verifyJWT, tweetController.getAnswers);
 mainRouter.post("/tweet/:id/like", verifyJWT, tweetController.likeToggle);
 
 mainRouter.get("/user/:slug", verifyJWT, userController.getUser);
+mainRouter.get("/user/:slug/tweets", verifyJWT, userController.getUserTweets);
