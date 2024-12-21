@@ -77,8 +77,6 @@ export const followToggle = async (req: ExtendedRequest, res: Response) => {
 };
 
 export const updateUser = async (req: ExtendedRequest, res: Response) => {
-    const { slug } = req.params;
-
     const safeData = updateUserSchema.safeParse(req.body);
     if (!safeData.success) {
         res.json({ error: safeData.error.flatten().fieldErrors });
