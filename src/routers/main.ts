@@ -5,6 +5,7 @@ import * as tweetController from "../controllers/tweet";
 import * as userController from "../controllers/user";
 import * as feedController from "../controllers/feed";
 import * as searchController from "../controllers/search";
+import * as trendController from "../controllers/trend";
 
 import { verifyJWT } from "../utils/jwt";
 
@@ -27,3 +28,4 @@ mainRouter.put("/user", verifyJWT, userController.updateUser);
 
 mainRouter.get("/feed", verifyJWT, feedController.getFeed);
 mainRouter.get("/search", verifyJWT, searchController.searchTweets);
+mainRouter.get("/trending", verifyJWT, trendController.getTrends);

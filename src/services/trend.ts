@@ -18,3 +18,18 @@ export const addHastag = async (hastag: string) => {
         });
     }
 };
+
+export const getTrending = async () => {
+    const trends = await prisma.trend.findMany({
+        select: {
+            hastag: true,
+            counter: true,
+        },
+        orderBy: {
+            counter: "desc",
+        },
+        take: 4,
+    });
+
+    return trends;
+};
