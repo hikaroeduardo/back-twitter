@@ -173,6 +173,7 @@ export const findTweetsByBody = async (
                 contains: bodyContains,
                 mode: "insensitive",
             },
+            answerOf: 0,
         },
         include: {
             user: {
