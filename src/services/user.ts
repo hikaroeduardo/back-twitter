@@ -160,4 +160,6 @@ export const getUserSuggestions = async (slug: string) => {
             suggestions[sugIndex].avatar
         );
     }
+
+    return suggestions;
 };
